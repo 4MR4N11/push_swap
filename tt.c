@@ -1,16 +1,34 @@
+#include "push_swap.h"
 #include <stdio.h>
-int main()
+int    *tab_fill(char **av, int ac)
+{
+    int i = -1;
+    int *input;
+    input = malloc(sizeof(int) * ac);
+    while(++i < ac)
+        input[i] = ft_atoi(av[i]);
+    return input;
+}
+int main(int ac, char **av)
 {
     int j;
-    int copy[] = {-487, -100, 0, 1, 87, 101, 781};
-    int input[] = {87, -487, 781, -100, 101, 0, 1};
-    int input2[7];
-    for(int i = 0 ; i < 7 ; ++i) 
-        for(int j = 0 ; j < 7 ; ++j)
+    int *input;
+    int *index;
+    int *copy;
+
+    index = malloc(sizeof(int) * ac-1);
+    input = tab_fill(++av,ac-1);
+    copy = sort_tab(input,ac-1);
+    for(int i = 0 ; i < ac-1 ; ++i) 
+        for(int j = 0 ; j < ac-1 ; ++j)
             if (input[i] == copy[j])
-                input2[i] = j;
+                index[i] = j;
     j = -1;
     while(++j < 7)
-        printf("%d ",input2[j]);
+        printf("%d ",index[j]);
+    j = -1;
+    printf("\n");
+    while(++j < 7)
+        printf("%d ",copy[j]);
     return 0;
 }
