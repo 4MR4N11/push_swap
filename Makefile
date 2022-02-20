@@ -6,12 +6,12 @@
 #    By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/14 21:23:06 by kel-amra          #+#    #+#              #
-#    Updated: 2022/02/19 18:08:51 by kel-amra         ###   ########.fr        #
+#    Updated: 2022/02/20 21:41:09 by kel-amra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = push_swap.c\
-	   small_stack.c
+	   ft_listnew.c
 
 NAME = push_swap
 
