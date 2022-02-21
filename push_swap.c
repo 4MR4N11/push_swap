@@ -47,16 +47,38 @@ int main(int ac, char **av)
 {
     int j;
     int i;
-    t_node *tmp;
+    t_stack tmp;
     if(ac < 3)
         return (0);
     i = -1;
     j = -1;
-    tmp = tab_fill(av);
-    while(tmp != NULL)
+    tmp.stack_A = tab_fill(av);
+    // tmp.stack_B = NULL;
+    // tmp.stack_B->next = NULL;
+    // tmp.stack_B = malloc(sizeof(t_node *) * ft_listsize(tmp.stack_A));
+    // ss(&tmp);
+    // pa(&tmp);
+    pb(&tmp);
+    pb(&tmp);
+    pb(&tmp);
+    pb(&tmp);
+    // sb(&tmp);
+    // pa(&tmp);
+    // pa(&tmp);
+    // pa(&tmp);
+    // pa(&tmp);
+    rr(&tmp);
+
+    while(tmp.stack_A != NULL)
     {
-        ft_printf("[%d] %d\n",++i,tmp->content);
-        tmp = tmp->next;
+        ft_printf("stack A : |%d|\n",tmp.stack_A->content);
+        tmp.stack_A = tmp.stack_A->next;
+    }
+    ft_printf("\n\n");
+    while(tmp.stack_B != NULL)
+    {
+        ft_printf("stack B : |%d|\n",tmp.stack_B->content);
+        tmp.stack_B = tmp.stack_B->next;
     }
     return 0;
 }
