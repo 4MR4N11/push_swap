@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 15:53:53 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/21 20:18:07 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:51:24 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef struct s_stack
 {
     t_node *stack_A;
     t_node *stack_B;
+    int     msg_status;
 }	t_stack;
+
 t_node	*ft_listnew(int content);
 int	ft_listsize(t_node *lst);
 int error_msg(int ac, char **args);
@@ -38,6 +40,8 @@ void    pb(t_stack *tmp);
 void    ra(t_stack *tmp);
 void    rb(t_stack *tmp);
 void    rr(t_stack *tmp);
-void	ft_listadd_back(t_node **lst,t_node *new);
+void    rra(t_stack *tmp);
+void    rrb(t_stack *tmp);
+void    rrr(t_stack *tmp);
 
 #   endif

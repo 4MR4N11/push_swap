@@ -43,6 +43,29 @@ t_node *tab_fill(char **av)
     }
     return head;
 }
+
+void    print_stack(t_stack *ptr)
+{
+    t_node *tmp_a = ptr->stack_A;
+    t_node *tmp_b = ptr->stack_B;
+
+    ft_printf("stack A : \n");
+    while(tmp_a != NULL)
+    {
+        ft_printf("|%d|\n",tmp_a->content);
+        tmp_a = tmp_a->next;
+    }
+
+    ft_printf("\n-------------------------------------------------\n\n");
+    ft_printf("stack B : \n");
+    while(tmp_b != NULL)
+    {
+        ft_printf("|%d|\n",tmp_b->content);
+        tmp_b = tmp_b->next;
+    }
+    ft_printf("\n---------------------------END--------------------\n\n");
+}
+
 int main(int ac, char **av)
 {
     int j;
@@ -53,32 +76,51 @@ int main(int ac, char **av)
     i = -1;
     j = -1;
     tmp.stack_A = tab_fill(av);
+    tmp.msg_status = 0;
+    // print_stack(&tmp);
     // tmp.stack_B = NULL;
     // tmp.stack_B->next = NULL;
     // tmp.stack_B = malloc(sizeof(t_node *) * ft_listsize(tmp.stack_A));
-    // ss(&tmp);
-    // pa(&tmp);
+    ss(&tmp);
+    print_stack(&tmp);
+    pa(&tmp);
+    print_stack(&tmp);
     pb(&tmp);
-    pb(&tmp);
-    pb(&tmp);
-    pb(&tmp);
-    // sb(&tmp);
-    // pa(&tmp);
-    // pa(&tmp);
-    // pa(&tmp);
-    // pa(&tmp);
+    print_stack(&tmp);
     rr(&tmp);
-
-    while(tmp.stack_A != NULL)
-    {
-        ft_printf("stack A : |%d|\n",tmp.stack_A->content);
-        tmp.stack_A = tmp.stack_A->next;
-    }
-    ft_printf("\n\n");
-    while(tmp.stack_B != NULL)
-    {
-        ft_printf("stack B : |%d|\n",tmp.stack_B->content);
-        tmp.stack_B = tmp.stack_B->next;
-    }
+    print_stack(&tmp);
+    pb(&tmp);
+    print_stack(&tmp);
+    pb(&tmp);
+    print_stack(&tmp);
+    pb(&tmp);
+    print_stack(&tmp);
+    rb(&tmp);
+    print_stack(&tmp);
+    ra(&tmp);
+    print_stack(&tmp);
+    rrr(&tmp);
+    print_stack(&tmp);
+    rr(&tmp);
+    print_stack(&tmp);
+    // print_stack(&tmp);
+    ss(&tmp);
+    print_stack(&tmp);
+    // print_stack(&tmp);
+    pa(&tmp);
+    print_stack(&tmp);
+    pa(&tmp);
+    print_stack(&tmp);
+    pa(&tmp);
+    print_stack(&tmp);
+    pa(&tmp);
+    print_stack(&tmp);
+    // print_stack(&tmp);
+    rr(&tmp);
+    print_stack(&tmp);
+    // print_stack(&tmp);
+    rrr(&tmp);
+    print_stack(&tmp);
+    // print_stack(&tmp);
     return 0;
 }
