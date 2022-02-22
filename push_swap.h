@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 15:53:53 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/21 21:51:24 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/22 19:19:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ typedef struct s_stack
 {
     t_node *stack_A;
     t_node *stack_B;
+    int     stack_size;
     int     msg_status;
 }	t_stack;
 
 t_node	*ft_listnew(int content);
 int	ft_listsize(t_node *lst);
 int error_msg(int ac, char **args);
+void	small_stack(t_stack *tmp);
 int	A_is_sorted(int ac ,t_stack *tmp);
 int	*sort_tab(int *tab, int size);
 void	sa(t_stack *tmp);
