@@ -69,6 +69,7 @@ void    print_stack(t_stack *ptr)
 int main(int ac, char **av)
 {
     t_stack tmp;
+<<<<<<< HEAD
     if(ac < 2)
         return (0);
     tmp.stack_A = tab_fill(av);
@@ -77,6 +78,21 @@ int main(int ac, char **av)
     tmp.stack_B = NULL;
     small_stack(&tmp);
     print_stack(&tmp);
+=======
+    i = -1;
+    j = -1;
+    if(ac < 2)
+        return (ft_printf("Error: To few arguments."),1);
+    tmp.stack_A = tab_fill(av);
+    tmp.stack_size = ft_listsize(tmp.stack_A);
+    if(tmp.stack_size < 2)
+        return 0;
+    // ft_printf("%d",tmp.stack_size);
+    tmp.msg_status = 0;
+    small_stack(&tmp);
+    print_stack(&tmp);
+    // tmp.stack_B = NULL;
+>>>>>>> f792e53262d014f67131eaf139099be01d6c66b1
     // tmp.stack_B->next = NULL;
     // tmp.stack_B = malloc(sizeof(t_node *) * ft_listsize(tmp.stack_A));
     // ss(&tmp);
@@ -86,6 +102,7 @@ int main(int ac, char **av)
     // pb(&tmp);
     // print_stack(&tmp);
     // rr(&tmp);
+<<<<<<< HEAD
     // print_stack(&tmp);
     // pb(&tmp);
     // print_stack(&tmp);
@@ -119,6 +136,41 @@ int main(int ac, char **av)
     // // print_stack(&tmp);
     // rrr(&tmp);
     // print_stack(&tmp);
+=======
     // print_stack(&tmp);
+    // pb(&tmp);
+    // print_stack(&tmp);
+    // pb(&tmp);
+    // print_stack(&tmp);
+    // pb(&tmp);
+    // print_stack(&tmp);
+    // rb(&tmp);
+    // print_stack(&tmp);
+    // ra(&tmp);
+    // print_stack(&tmp);
+    // rrr(&tmp);
+    // print_stack(&tmp);
+    // rr(&tmp);
+    // print_stack(&tmp);
+    // // print_stack(&tmp);
+    // ss(&tmp);
+    // print_stack(&tmp);
+    // // print_stack(&tmp);
+    // pa(&tmp);
+    // print_stack(&tmp);
+    // pa(&tmp);
+    // print_stack(&tmp);
+    // pa(&tmp);
+    // print_stack(&tmp);
+    // pa(&tmp);
+    // print_stack(&tmp);
+    // // print_stack(&tmp);
+    // rr(&tmp);
+    // print_stack(&tmp);
+    // // print_stack(&tmp);
+    // rrr(&tmp);
+>>>>>>> f792e53262d014f67131eaf139099be01d6c66b1
+    // print_stack(&tmp);
+    // // print_stack(&tmp);
     return 0;
 }
