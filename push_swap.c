@@ -6,11 +6,13 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/23 17:30:34 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:23:22 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
 void    free_data(char **tmp)
 {
     int i = -1;
@@ -21,6 +23,42 @@ void    free_data(char **tmp)
     }
     free(tmp);
     tmp = NULL;
+}
+
+int arg_isdigit(char **av)
+{
+    int		i;
+	int		j;
+	int		k;
+	char	**tmp;
+
+	k = -1;
+	i = 0;
+	j = -1;
+	while (av[++i])
+	{
+		tmp = ft_split(av[i], ' ');
+		while (tmp && tmp[++j])
+		{
+			while (tmp[j][++k])
+			{
+				if (tmp[j][k] == '-' || tmp[j][k] == '+')
+					{
+						if (tmp[j][k + 1] < 48 || tmp[j][k + 1] > 57)
+							return (ft_printf("Error: arguments are not digits: %s\n",tmp[j]),1);
+					}
+				if ((tmp[j][k] < 48 || tmp[j][k] > 57) &&
+					(tmp[j][k] != '-' && tmp[j][k] != '+'))
+						return (ft_printf("Error: arguments are not digits: %s\n",tmp[j]),1);
+			}
+			if((ft_atoi2(tmp[j]) > 2147483647) || (ft_atoi2(tmp[j]) < -2147483648))
+				return (ft_printf("Error: digit is out of int limits: %s\n",tmp[j]),1);
+			k = -1;
+		}
+		free_data(tmp);
+		j = -1;
+	}
+	return (0);	
 }
 
 t_node *tab_fill(char **av)
@@ -82,7 +120,9 @@ int main(int ac, char **av)
 {
     t_stack tmp;
     if(ac < 2)
-        return (0);
+        return (ft_printf("Error: to few arguments"),1);
+    if(arg_isdigit(av) == 1)
+        return(1);
     tmp.stack_A = tab_fill(av);
     tmp.stack_size = ft_listsize(tmp.stack_A);
     tmp.msg_status = 0;

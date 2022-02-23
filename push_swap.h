@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:06 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/23 17:27:27 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:13:18 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	three_stack(t_stack *tmp);
 void	five_four_stack(t_stack *tmp);
 int	A_is_sorted(int ac ,t_stack *tmp);
 int	*sort_tab(int *tab, int size);
+int arg_isdigit(char **av);
+long long	ft_atoi2(const char *str);
 void    sa(t_stack *tmp);
 void	sb(t_stack *tmp);
 void    ss(t_stack *tmp);
