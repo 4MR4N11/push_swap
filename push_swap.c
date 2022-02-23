@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
+/*   Updated: 2022/02/23 17:30:34 by kel-amra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 void    free_data(char **tmp)
 {
@@ -63,36 +75,28 @@ void    print_stack(t_stack *ptr)
         ft_printf("|%d|\n",tmp_b->content);
         tmp_b = tmp_b->next;
     }
-    ft_printf("\n---------------------------END--------------------\n\n");
+    ft_printf("\n-----------------------END-----------------------\n\n");
 }
 
 int main(int ac, char **av)
 {
     t_stack tmp;
-<<<<<<< HEAD
     if(ac < 2)
         return (0);
     tmp.stack_A = tab_fill(av);
     tmp.stack_size = ft_listsize(tmp.stack_A);
     tmp.msg_status = 0;
     tmp.stack_B = NULL;
-    small_stack(&tmp);
+    ft_printf("------------------instractions------------------\n");
+    if(tmp.stack_size == 2)
+        two_stack(&tmp);
+    else if(tmp.stack_size == 3)
+        three_stack(&tmp);
+    else if(tmp.stack_size == 4 || tmp.stack_size == 5)
+        five_four_stack(&tmp);
+    ft_printf("------------------------------------------------\n\n");
+    // small_stack(&tmp);
     print_stack(&tmp);
-=======
-    i = -1;
-    j = -1;
-    if(ac < 2)
-        return (ft_printf("Error: To few arguments."),1);
-    tmp.stack_A = tab_fill(av);
-    tmp.stack_size = ft_listsize(tmp.stack_A);
-    if(tmp.stack_size < 2)
-        return 0;
-    // ft_printf("%d",tmp.stack_size);
-    tmp.msg_status = 0;
-    small_stack(&tmp);
-    print_stack(&tmp);
-    // tmp.stack_B = NULL;
->>>>>>> f792e53262d014f67131eaf139099be01d6c66b1
     // tmp.stack_B->next = NULL;
     // tmp.stack_B = malloc(sizeof(t_node *) * ft_listsize(tmp.stack_A));
     // ss(&tmp);
@@ -102,7 +106,6 @@ int main(int ac, char **av)
     // pb(&tmp);
     // print_stack(&tmp);
     // rr(&tmp);
-<<<<<<< HEAD
     // print_stack(&tmp);
     // pb(&tmp);
     // print_stack(&tmp);
@@ -136,7 +139,6 @@ int main(int ac, char **av)
     // // print_stack(&tmp);
     // rrr(&tmp);
     // print_stack(&tmp);
-=======
     // print_stack(&tmp);
     // pb(&tmp);
     // print_stack(&tmp);
@@ -169,7 +171,6 @@ int main(int ac, char **av)
     // print_stack(&tmp);
     // // print_stack(&tmp);
     // rrr(&tmp);
->>>>>>> f792e53262d014f67131eaf139099be01d6c66b1
     // print_stack(&tmp);
     // // print_stack(&tmp);
     return 0;

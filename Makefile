@@ -3,16 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/14 21:23:06 by kel-amra          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/02/22 19:18:04 by marvin           ###   ########.fr        #
-=======
-#    Updated: 2022/02/22 18:10:05 by kel-amra         ###   ########.fr        #
->>>>>>> f792e53262d014f67131eaf139099be01d6c66b1
+#    Created: 2022/02/23 17:26:38 by kel-amra          #+#    #+#              #
+#    Updated: 2022/02/23 17:26:39 by kel-amra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 SRCS = push_swap.c\
 	   ft_listnew.c\
