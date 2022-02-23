@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/23 20:23:22 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/23 22:14:55 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_node *tab_fill(char **av)
     int j;
     t_node *lst_tmp;
     t_node *head;
-    i = 0;
+    i = -1;
     j = -1;
     lst_tmp = NULL;
     head = NULL;
@@ -98,8 +98,10 @@ void    print_stack(t_stack *ptr)
 {
     t_node *tmp_a = ptr->stack_A;
     t_node *tmp_b = ptr->stack_B;
+	t_node *tmp_tmp = ptr->stack_tmp;
 
     ft_printf("stack A : \n");
+	ft_printf("---------\n\n");
     while(tmp_a != NULL)
     {
         ft_printf("|%d|\n",tmp_a->content);
@@ -108,10 +110,19 @@ void    print_stack(t_stack *ptr)
 
     ft_printf("\n-------------------------------------------------\n\n");
     ft_printf("stack B : \n");
+	ft_printf("---------\n\n");
     while(tmp_b != NULL)
     {
         ft_printf("|%d|\n",tmp_b->content);
         tmp_b = tmp_b->next;
+    }
+	ft_printf("\n-------------------------------------------------\n\n");
+    ft_printf("stack tmp : \n");
+	ft_printf("-----------\n\n");
+    while(tmp_tmp != NULL)
+    {
+        ft_printf("|%d|\n",tmp_tmp->content);
+        tmp_tmp = tmp_tmp->next;
     }
     ft_printf("\n-----------------------END-----------------------\n\n");
 }
@@ -119,99 +130,29 @@ void    print_stack(t_stack *ptr)
 int main(int ac, char **av)
 {
     t_stack tmp;
+	char **strs;
     if(ac < 2)
         return (ft_printf("Error: to few arguments"),1);
     if(arg_isdigit(av) == 1)
         return(1);
-    tmp.stack_A = tab_fill(av);
+	strs = sort_tab(av);
+	tmp.stack_tmp = tab_fill(strs);
+	free_data(strs);
+    tmp.stack_A = tab_fill(++av);
     tmp.stack_size = ft_listsize(tmp.stack_A);
     tmp.msg_status = 0;
     tmp.stack_B = NULL;
     ft_printf("------------------instractions------------------\n");
-    if(tmp.stack_size == 2)
-        two_stack(&tmp);
-    else if(tmp.stack_size == 3)
-        three_stack(&tmp);
-    else if(tmp.stack_size == 4 || tmp.stack_size == 5)
-        five_four_stack(&tmp);
+	while(stack_checker(&tmp) == 1)
+	{
+		if(tmp.stack_size == 2)
+			two_stack(&tmp);
+		else if(tmp.stack_size == 3)
+			three_stack(&tmp);
+		else if(tmp.stack_size == 4 || tmp.stack_size == 5)
+			five_four_stack(&tmp);
+	}
     ft_printf("------------------------------------------------\n\n");
-    // small_stack(&tmp);
     print_stack(&tmp);
-    // tmp.stack_B->next = NULL;
-    // tmp.stack_B = malloc(sizeof(t_node *) * ft_listsize(tmp.stack_A));
-    // ss(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // rr(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // rb(&tmp);
-    // print_stack(&tmp);
-    // ra(&tmp);
-    // print_stack(&tmp);
-    // rrr(&tmp);
-    // print_stack(&tmp);
-    // rr(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // ss(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // rr(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // rrr(&tmp);
-    // print_stack(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // pb(&tmp);
-    // print_stack(&tmp);
-    // rb(&tmp);
-    // print_stack(&tmp);
-    // ra(&tmp);
-    // print_stack(&tmp);
-    // rrr(&tmp);
-    // print_stack(&tmp);
-    // rr(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // ss(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // pa(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // rr(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
-    // rrr(&tmp);
-    // print_stack(&tmp);
-    // // print_stack(&tmp);
     return 0;
 }

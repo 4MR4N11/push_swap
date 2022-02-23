@@ -1,28 +1,36 @@
 #include "push_swap.h"
 
-int	*sort_tab(int *tab, int size)
+char	**sort_tab(char **tab)
 {
-	int		swap;
-	int 	count;
-	int		*sorted;
+	char	*swap;
+	int 	i;
+	int		j;
+	int		size;
+	char	**sorted;
 
-	count = -1;
-	sorted = malloc(sizeof(int)*size);
-	while(++count < size)
-		sorted[count] = tab[count];
-	count = 0;
-	while ( count < (size - 1))
+	j = 0;
+	size = 0;
+	i = -1;
+	while(tab[++j])
+		size++;
+	sorted = malloc(sizeof(char *) * (size + 1));
+	i = 0;
+	j = 0;
+	while(i < size)
+		sorted[i++] = ft_strdup(tab[++j]);
+	sorted[i] = NULL;
+	i = 0;
+	while (i < (size - 1))
 	{
-		if (sorted[count] > sorted[count + 1])
+		if (ft_atoi(sorted[i]) > ft_atoi(sorted[i + 1]))
 		{
-			swap =sorted[count];
-			sorted[count] = sorted[count + 1];
-			sorted[count + 1] = swap;
-			count = 0;
+			swap = sorted[i];
+			sorted[i] = sorted[i + 1];
+			sorted[i + 1] = swap;
+			i = 0;
 		}
 		else
-			count++;
+			i++;
 	}
-	int i = 0;
-	return sorted;
+	return (sorted);
 }
