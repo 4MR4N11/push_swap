@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:06 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/23 22:07:45 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:26:19 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int	ft_listsize(t_node *lst);
 int error_msg(int ac, char **args);
 void	two_stack(t_stack *tmp);
 void	three_stack(t_stack *tmp);
-void	five_four_stack(t_stack *tmp);
+void	four_stack(t_stack *tmp);
+void	five_stack(t_stack *tmp);
 int	A_is_sorted(int ac ,t_stack *tmp);
 char	**sort_tab(char **tab);
+void    free_data(char **tmp);
 int		stack_checker(t_stack *tmp);
 int arg_isdigit(char **av);
 long long	ft_atoi2(const char *str);

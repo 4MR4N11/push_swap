@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/23 22:14:55 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:40:33 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,15 +143,17 @@ int main(int ac, char **av)
     tmp.msg_status = 0;
     tmp.stack_B = NULL;
     ft_printf("------------------instractions------------------\n");
-	while(stack_checker(&tmp) == 1)
-	{
+	// while(stack_checker(&tmp) == 1)
+	// {
 		if(tmp.stack_size == 2)
 			two_stack(&tmp);
 		else if(tmp.stack_size == 3)
 			three_stack(&tmp);
-		else if(tmp.stack_size == 4 || tmp.stack_size == 5)
-			five_four_stack(&tmp);
-	}
+		else if(tmp.stack_size == 4)
+			four_stack(&tmp);
+        else if(tmp.stack_size == 5)
+            five_stack(&tmp);
+	// }
     ft_printf("------------------------------------------------\n\n");
     print_stack(&tmp);
     return 0;
