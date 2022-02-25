@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/24 18:40:33 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/25 22:44:42 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ int arg_isdigit(char **av)
 				if (tmp[j][k] == '-' || tmp[j][k] == '+')
 					{
 						if (tmp[j][k + 1] < 48 || tmp[j][k + 1] > 57)
-							return (ft_printf("Error: arguments are not digits: %s\n",tmp[j]),1);
+							return (1);
 					}
 				if ((tmp[j][k] < 48 || tmp[j][k] > 57) &&
 					(tmp[j][k] != '-' && tmp[j][k] != '+'))
-						return (ft_printf("Error: arguments are not digits: %s\n",tmp[j]),1);
+						return (1);
 			}
 			if((ft_atoi2(tmp[j]) > 2147483647) || (ft_atoi2(tmp[j]) < -2147483648))
-				return (ft_printf("Error: digit is out of int limits: %s\n",tmp[j]),1);
+				return (1);
 			k = -1;
 		}
 		free_data(tmp);
@@ -98,7 +98,7 @@ void    print_stack(t_stack *ptr)
 {
     t_node *tmp_a = ptr->stack_A;
     t_node *tmp_b = ptr->stack_B;
-	t_node *tmp_tmp = ptr->stack_tmp;
+    int i = -1;
 
     ft_printf("stack A : \n");
 	ft_printf("---------\n\n");
@@ -119,10 +119,9 @@ void    print_stack(t_stack *ptr)
 	ft_printf("\n-------------------------------------------------\n\n");
     ft_printf("stack tmp : \n");
 	ft_printf("-----------\n\n");
-    while(tmp_tmp != NULL)
+    while(++i < ptr->stack_size)
     {
-        ft_printf("|%d|\n",tmp_tmp->content);
-        tmp_tmp = tmp_tmp->next;
+        ft_printf("|%d|\n",ptr->stack_tmp[i]);
     }
     ft_printf("\n-----------------------END-----------------------\n\n");
 }
@@ -130,30 +129,29 @@ void    print_stack(t_stack *ptr)
 int main(int ac, char **av)
 {
     t_stack tmp;
-	char **strs;
+    
     if(ac < 2)
-        return (ft_printf("Error: to few arguments"),1);
+        return (0);
     if(arg_isdigit(av) == 1)
-        return(1);
-	strs = sort_tab(av);
-	tmp.stack_tmp = tab_fill(strs);
-	free_data(strs);
+        return (ft_printf("Error\n"),2);
+	tmp.stack_tmp = sort_tab(av, &tmp);
+    if(tmp.msg_status == 1)
+        return (ft_printf("Error\n"),2);
     tmp.stack_A = tab_fill(++av);
     tmp.stack_size = ft_listsize(tmp.stack_A);
     tmp.msg_status = 0;
     tmp.stack_B = NULL;
     ft_printf("------------------instractions------------------\n");
-	// while(stack_checker(&tmp) == 1)
-	// {
-		if(tmp.stack_size == 2)
-			two_stack(&tmp);
-		else if(tmp.stack_size == 3)
-			three_stack(&tmp);
-		else if(tmp.stack_size == 4)
-			four_stack(&tmp);
-        else if(tmp.stack_size == 5)
-            five_stack(&tmp);
-	// }
+	if(tmp.stack_size == 2)
+		two_stack(&tmp);
+	else if(tmp.stack_size == 3)
+		three_stack(&tmp);
+	else if(tmp.stack_size == 4)
+		four_stack(&tmp);
+    else if(tmp.stack_size == 5)
+       five_stack(&tmp);
+    else
+		big_stack(&tmp);
     ft_printf("------------------------------------------------\n\n");
     print_stack(&tmp);
     return 0;

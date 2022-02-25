@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:06 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/24 17:26:19 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/02/25 22:47:55 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_stack
 {
     t_node *stack_A;
     t_node *stack_B;
-    t_node *stack_tmp;
+    int		*stack_tmp;
     int     stack_size;
     int     msg_status;
 }	t_stack;
@@ -38,8 +38,9 @@ void	two_stack(t_stack *tmp);
 void	three_stack(t_stack *tmp);
 void	four_stack(t_stack *tmp);
 void	five_stack(t_stack *tmp);
+void	big_stack(t_stack *tmp);
 int	A_is_sorted(int ac ,t_stack *tmp);
-char	**sort_tab(char **tab);
+int		*sort_tab(char **tab, t_stack * tmpp);
 void    free_data(char **tmp);
 int		stack_checker(t_stack *tmp);
 int arg_isdigit(char **av);
