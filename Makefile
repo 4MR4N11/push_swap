@@ -6,7 +6,7 @@
 #    By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 17:26:38 by kel-amra          #+#    #+#              #
-#    Updated: 2022/03/04 16:36:11 by kel-amra         ###   ########.fr        #
+#    Updated: 2022/03/04 21:31:01 by kel-amra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,28 @@ NAME = push_swap
 
 HEADER = push_swap.h
 
+LIBFT = libft/libft.a
+
+FT_PRINTF = ft_printf/libftprintf.a
+
 OBJECT = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
-$(NAME) : $(OBJECT) $(HEADER)
-			make -C ft_printf/
+$(LIBFT) : mlibft
+
+$(FT_PRINTF) : mft_printf
+
+$(NAME) : $(LIBFT) $(FT_PRINTF) $(OBJECT) $(HEADER)
+			gcc $(FLAGS) $(OBJECT) $(LIBFT) $(FT_PRINTF) -o $(NAME)
+
+mlibft :
 			make -C libft/
-			gcc $(FLAGS) $(OBJECT) libft/libft.a ft_printf/libftprintf.a -o $(NAME)
+
+mft_printf :
+			make -C ft_printf/
 
 %.o : %.c
 			gcc $(FLAGS) -c $<
