@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_listsize.c                                      :+:      :+:    :+:   */
+/*   push_to_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 21:02:26 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/04 14:17:15 by kel-amra         ###   ########.fr       */
+/*   Created: 2022/03/04 14:26:27 by kel-amra          #+#    #+#             */
+/*   Updated: 2022/03/04 20:33:33 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_listsize(t_node *lst)
+void	push_to_a_top(int index, t_stack *tmp)
 {
-	t_node	*tmp;
-	int		i;
+	int	i;
 
 	i = 0;
-	tmp = lst;
-	while (tmp != NULL)
+	while (i < index)
 	{
+		rb(tmp);
 		i++;
-		tmp = tmp->next;
 	}
-	return (i);
+	pa(tmp);
+}
+
+void	push_to_a_bottom(int index, t_stack *tmp)
+{
+	int	i;
+
+	i = ft_listsize(tmp->stack_B);
+	while (i > index)
+	{
+		rrb(tmp);
+		i--;
+	}
+	if(tmp->stack_B->content > tmp->stack_B->content)
+		sa(tmp);
+	pa(tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/25 22:44:42 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:53:44 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,38 +94,6 @@ t_node *tab_fill(char **av)
     return head;
 }
 
-void    print_stack(t_stack *ptr)
-{
-    t_node *tmp_a = ptr->stack_A;
-    t_node *tmp_b = ptr->stack_B;
-    int i = -1;
-
-    ft_printf("stack A : \n");
-	ft_printf("---------\n\n");
-    while(tmp_a != NULL)
-    {
-        ft_printf("|%d|\n",tmp_a->content);
-        tmp_a = tmp_a->next;
-    }
-
-    ft_printf("\n-------------------------------------------------\n\n");
-    ft_printf("stack B : \n");
-	ft_printf("---------\n\n");
-    while(tmp_b != NULL)
-    {
-        ft_printf("|%d|\n",tmp_b->content);
-        tmp_b = tmp_b->next;
-    }
-	ft_printf("\n-------------------------------------------------\n\n");
-    ft_printf("stack tmp : \n");
-	ft_printf("-----------\n\n");
-    while(++i < ptr->stack_size)
-    {
-        ft_printf("|%d|\n",ptr->stack_tmp[i]);
-    }
-    ft_printf("\n-----------------------END-----------------------\n\n");
-}
-
 int main(int ac, char **av)
 {
     t_stack tmp;
@@ -141,7 +109,6 @@ int main(int ac, char **av)
     tmp.stack_size = ft_listsize(tmp.stack_A);
     tmp.msg_status = 0;
     tmp.stack_B = NULL;
-    ft_printf("------------------instractions------------------\n");
 	if(tmp.stack_size == 2)
 		two_stack(&tmp);
 	else if(tmp.stack_size == 3)
@@ -152,7 +119,5 @@ int main(int ac, char **av)
        five_stack(&tmp);
     else
 		big_stack(&tmp);
-    ft_printf("------------------------------------------------\n\n");
-    print_stack(&tmp);
-    return 0;
+    return (0);
 }

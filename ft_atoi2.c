@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:52:12 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/02/23 20:13:31 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:16:45 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static int	ft_sign(const char *str)
 
 long long	ft_atoi2(const char *str)
 {
-	int	i;
+	int			i;
 	long long	nb;
 
 	nb = 0;
 	i = ft_skip_space(str);
 	i = ft_sign(str);
-	if(i == -1)
-		return(-1);
+	if (i == -1)
+		return (-1);
 	while (str[i] != '\0' && (str[i] <= 57 && str[i] >= 48))
 	{
 		if (str[i] >= 48 && str[i] <= 57)

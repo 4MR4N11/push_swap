@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_tab.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/04 14:14:45 by kel-amra          #+#    #+#             */
+/*   Updated: 2022/03/04 14:14:45 by kel-amra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int		error_checker(int	*tab, int size)
+int	error_checker(int *tab, int size)
 {
 	int		i;
 	int		j;
@@ -21,7 +33,7 @@ int		error_checker(int	*tab, int size)
 	return (0);
 }
 
-int		size_counter(char **tab)
+int	size_counter(char **tab)
 {
 	int 	i;
 	int		j;
@@ -31,18 +43,18 @@ int		size_counter(char **tab)
 	j = 0;
 	size = 0;
 	i = -1;
-	while(tab[++j])
+	while (tab[++j])
 	{
 		tmp = ft_split(tab[j], ' ');
-		while(tmp && tmp[++i])
+		while (tmp && tmp[++i])
 			size++;
 		free_data(tmp);
 		i = -1;
 	}
-	return size;
+	return (size);
 }
 
-int		*sort_tab(char **tab, t_stack *tmpp)
+int	*sort_tab(char **tab, t_stack *tmpp)
 {
 	int		swap;
 	int 	i;
@@ -57,7 +69,7 @@ int		*sort_tab(char **tab, t_stack *tmpp)
 	k = 0;
 	size = size_counter(tab);
 	sorted = malloc(sizeof(int) * (size));
-	while(tab[++j])
+	while (tab[++j])
 	{
 		tmp = ft_split(tab[j], ' ');
 		while(tmp && tmp[++i])
@@ -65,7 +77,7 @@ int		*sort_tab(char **tab, t_stack *tmpp)
 		free_data(tmp);
 		i = -1;
 	}
-	if(error_checker(sorted, size) == 1)
+	if (error_checker(sorted, size) == 1)
 	{
 		tmpp->msg_status = 1;
 		free(sorted);

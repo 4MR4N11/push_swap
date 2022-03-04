@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_listsize.c                                      :+:      :+:    :+:   */
+/*   push_to_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 21:02:26 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/04 14:17:15 by kel-amra         ###   ########.fr       */
+/*   Created: 2022/03/04 14:26:48 by kel-amra          #+#    #+#             */
+/*   Updated: 2022/03/04 20:31:11 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_listsize(t_node *lst)
+void	push_to_b_top(int index, t_stack *tmp)
 {
-	t_node	*tmp;
-	int		i;
+	int	i;
 
 	i = 0;
-	tmp = lst;
-	while (tmp != NULL)
+	while (i < index)
 	{
+		ra(tmp);
 		i++;
-		tmp = tmp->next;
 	}
-	return (i);
+	if(tmp->stack_B && (tmp->stack_B->content < tmp->stack_A->content))
+		sb(tmp);
+	pb(tmp);
+}
+
+void	push_to_b_bottom(int index, t_stack *tmp)
+{
+	int	i;
+
+	i = ft_listsize(tmp->stack_A);
+	while (i > index)
+	{
+		rra(tmp);
+		i--;
+	}
+	if(tmp->stack_B && (tmp->stack_B->content < tmp->stack_A->content))
+		sb(tmp);
+	pb(tmp);
 }

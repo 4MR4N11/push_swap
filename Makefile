@@ -6,7 +6,7 @@
 #    By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 17:26:38 by kel-amra          #+#    #+#              #
-#    Updated: 2022/02/24 18:52:52 by kel-amra         ###   ########.fr        #
+#    Updated: 2022/03/04 16:36:11 by kel-amra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRCS = push_swap.c\
 	   ft_listsize.c\
 	   small_stack.c\
 	   big_stack.c\
+	   push_to_a.c\
+	   push_to_b.c\
 	   sort_tab.c\
 	   ft_atoi2.c\
 	   sa_sb_ss.c\
