@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:09:10 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/04 14:10:24 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/06 12:16:27 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	ra(t_stack *tmp)
 	t_node	*node_tmp;
 	t_node	*head;
 
-	if (!tmp->stack_A || !tmp->stack_A->next)
+	if (!tmp->stack_a || !tmp->stack_a->next)
 		return ;
-	head = tmp->stack_A->next;
-	node_tmp = tmp->stack_A;
-	while (tmp->stack_A->next != NULL)
-	tmp->stack_A = tmp->stack_A->next;
-	tmp->stack_A->next = node_tmp;
+	head = tmp->stack_a->next;
+	node_tmp = tmp->stack_a;
+	while (tmp->stack_a->next != NULL)
+	tmp->stack_a = tmp->stack_a->next;
+	tmp->stack_a->next = node_tmp;
 	node_tmp->next = NULL;
-	tmp->stack_A = head;
+	tmp->stack_a = head;
 	if (tmp->msg_status == 0)
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 }
 
 void	rb(t_stack *tmp)
@@ -35,23 +35,23 @@ void	rb(t_stack *tmp)
 	t_node	*node_tmp;
 	t_node	*head;
 
-	if (!tmp->stack_B || !tmp->stack_B->next)
+	if (!tmp->stack_b || !tmp->stack_b->next)
 		return ;
-	head = tmp->stack_B->next;
-	node_tmp = tmp->stack_B;
-	while (tmp->stack_B->next != NULL)
-	tmp->stack_B = tmp->stack_B->next;
-	tmp->stack_B->next = node_tmp;
+	head = tmp->stack_b->next;
+	node_tmp = tmp->stack_b;
+	while (tmp->stack_b->next != NULL)
+	tmp->stack_b = tmp->stack_b->next;
+	tmp->stack_b->next = node_tmp;
 	node_tmp->next = NULL;
-	tmp->stack_B = head;
+	tmp->stack_b = head;
 	if (tmp->msg_status == 0)
-		ft_printf("rb\n");
+		write(1, "rb\n", 3);
 }
 
 void	rr(t_stack *tmp)
 {
 	tmp->msg_status = 1;
-	ft_printf("rr\n");
+	write(1, "rr\n", 3);
 	ra(tmp);
 	rb(tmp);
 	tmp->msg_status = 0;

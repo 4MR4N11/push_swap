@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:26:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/04 20:31:11 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/06 13:03:49 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	push_to_b_top(int index, t_stack *tmp)
 		ra(tmp);
 		i++;
 	}
-	if(tmp->stack_B && (tmp->stack_B->content < tmp->stack_A->content))
-		sb(tmp);
 	pb(tmp);
 }
 
@@ -31,13 +29,11 @@ void	push_to_b_bottom(int index, t_stack *tmp)
 {
 	int	i;
 
-	i = ft_listsize(tmp->stack_A);
+	i = ft_listsize(tmp->stack_a);
 	while (i > index)
 	{
 		rra(tmp);
 		i--;
 	}
-	if(tmp->stack_B && (tmp->stack_B->content < tmp->stack_A->content))
-		sb(tmp);
 	pb(tmp);
 }

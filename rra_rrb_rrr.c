@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:10:52 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/04 14:11:45 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/06 12:18:58 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	rra(t_stack *tmp)
 	t_node	*node_tmp;
 	t_node	*head;
 
-	if (!tmp->stack_A || !tmp->stack_A->next)
+	if (!tmp->stack_a || !tmp->stack_a->next)
 		return ;
-	head = tmp->stack_A;
-	while (tmp->stack_A->next != NULL)
+	head = tmp->stack_a;
+	while (tmp->stack_a->next != NULL)
 	{
-	node_tmp = tmp->stack_A;
-	tmp->stack_A = tmp->stack_A->next;
+	node_tmp = tmp->stack_a;
+	tmp->stack_a = tmp->stack_a->next;
 	}
-	tmp->stack_A->next = head;
+	tmp->stack_a->next = head;
 	node_tmp->next = NULL;
 	if (tmp->msg_status == 0)
-		ft_printf("rra\n");
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack *tmp)
@@ -36,24 +36,24 @@ void	rrb(t_stack *tmp)
 	t_node	*node_tmp;
 	t_node	*head;
 
-	if (!tmp->stack_B || !tmp->stack_B->next)
+	if (!tmp->stack_b || !tmp->stack_b->next)
 		return ;
-	head = tmp->stack_B;
-	while (tmp->stack_B->next != NULL)
+	head = tmp->stack_b;
+	while (tmp->stack_b->next != NULL)
 	{
-	node_tmp = tmp->stack_B;
-	tmp->stack_B = tmp->stack_B->next;
+	node_tmp = tmp->stack_b;
+	tmp->stack_b = tmp->stack_b->next;
 	}
-	tmp->stack_B->next = head;
+	tmp->stack_b->next = head;
 	node_tmp->next = NULL;
 	if (tmp->msg_status == 0)
-		ft_printf("rrb\n");
+		write(1, "rrb\n", 4);
 }
 
 void	rrr(t_stack *tmp)
 {
 	tmp->msg_status = 1;
-	ft_printf("rrr\n");
+	write(1, "rrr\n", 4);
 	rra(tmp);
 	rrb(tmp);
 	tmp->msg_status = 0;

@@ -6,59 +6,78 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:26:34 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/04 20:32:38 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/06 15:32:57 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	checker(t_stack *tmp, int list_size, int is_a)
+static	int	chunk_fill(t_stack *tmp, int chunk_size)
 {
-	if(is_a)
+	int	i;
+	int	j;
+
+	j = tmp->sorted_stack_index;
+	i = -1;
+	if ((ft_listsize(tmp->stack_b) % chunk_size) == 0 && tmp->index == 0)
 	{
-		if (tmp->index <= (list_size / 2))
-		{
-			push_to_a_top(tmp->index, tmp);
-			tmp->index = -1;
-		}
-		else
-		{
-			push_to_a_bottom(tmp->index, tmp);
-			tmp->index = -1;
-		}
+		free (tmp->chunk);
+		tmp->chunk = malloc(sizeof(int) * chunk_size);
+		if (!tmp->chunk)
+			return (free (tmp->chunk), -1);
+		while (++i < chunk_size)
+			tmp->chunk[i] = tmp->stack_tmp[j++];
+		tmp->sorted_stack_index += chunk_size;
 	}
-	else
-	{
-		if (tmp->index <= (list_size / 2))
-		{
-			push_to_b_top(tmp->index, tmp);
-			tmp->index = -1;
-		}
-		else
-		{
-			push_to_b_bottom(tmp->index, tmp);
-			tmp->index = -1;
-		}
-	}
+	return (0);
 }
 
-static	void	rev_stack(t_stack *tmp)
+static	int	from_a_to_b(t_stack *tmp, int chunk_size, t_node *node)
+{
+	int		i;
+	int		is_min;
+
+	i = -1;
+	while (tmp->stack_a)
+	{
+		if (chunk_fill(tmp, chunk_size) == -1)
+			return (1);
+		while (++i < chunk_size)
+		{
+			is_min = 0;
+			if (node->content == tmp->chunk[i])
+			{
+				checker(tmp, ft_listsize(tmp->stack_a), 0);
+				is_min = 1;
+				node = tmp->stack_a;
+				i = chunk_size;
+			}
+		}
+		i = -1;
+		if (!is_min)
+			node = node->next;
+		tmp->index++;
+	}
+	return (0);
+}	
+
+static	void	from_b_to_a(t_stack *tmp)
 {
 	int		i;
 	t_node	*node;
 	int		is_min;
 
-	node = tmp->stack_B;
+	node = tmp->stack_b;
 	tmp->index = 0;
-	i = ft_listsize(tmp->stack_B) - 1;
-	while (tmp->stack_B)
+	i = ft_listsize(tmp->stack_b) - 1;
+	while (tmp->stack_b)
 	{
 		is_min = 0;
 		if (node->content == tmp->stack_tmp[i])
 		{
-			checker(tmp, ft_listsize(tmp->stack_B), 1);
+			checker(tmp, ft_listsize(tmp->stack_b), 1);
 			is_min = 1;
-			node = tmp->stack_B;
+			node = tmp->stack_b;
 			i--;
 		}
 		if (!is_min)
@@ -67,68 +86,30 @@ static	void	rev_stack(t_stack *tmp)
 	}
 }
 
-static	int	*chunk_fill(t_stack *tmp, int sorted_stack_index, int chunk_size)
+static	int	get_chunk_size(t_stack *tmp)
 {
-	int	i;
-	int	*chunk;
+	int	chunk_size;
 
-	chunk = malloc(sizeof(int) * chunk_size);
-	if(!chunk)
-	{
-		free(chunk);
-		return (0);
-	}
-	i = -1;
-	while (++i < chunk_size)
-		chunk[i] = tmp->stack_tmp[sorted_stack_index++];
-	return (chunk);
-}
-
-void	big_stack(t_stack *tmp)
-{
-	int		i;
-	int		sorted_stack_index;
-	t_node	*node;
-	int		is_min;
-	int		chunk_size;
-
-	if(tmp->stack_size < 100)
+	if (tmp->stack_size < 100)
 		chunk_size = tmp->stack_size / 2;
-	else if(tmp->stack_size >= 100 && tmp->stack_size < 500)
+	else if (tmp->stack_size >= 100 && tmp->stack_size < 500)
 		chunk_size = tmp->stack_size / 5;
 	else
 		chunk_size = tmp->stack_size / 10;
-	node = tmp->stack_A;
-	tmp->index = 0;
-	i = 0;
-	tmp->chunk = NULL;
-	sorted_stack_index = 0;
-	while (tmp->stack_A)
-	{
-		if ((ft_listsize(tmp->stack_B) % chunk_size) == 0 && tmp->index == 0)
-		{
-			free (tmp->chunk);
-			tmp->chunk = chunk_fill(tmp, sorted_stack_index, chunk_size);
-			if(!tmp->chunk)
-				return ;
-			sorted_stack_index += chunk_size;
-		}
-		while (i < chunk_size)
-		{
-			is_min = 0;
-			if (node->content == tmp->chunk[i])
-			{
-				checker(tmp, ft_listsize(tmp->stack_A), 0);
-				is_min = 1;
-				node = tmp->stack_A;
-				i = chunk_size;
-			}
-			i++;
-		}
-		i = 0;
-		if (!is_min)
-			node = node->next;
-		tmp->index++;
-	}
-	rev_stack(tmp);
+	return (chunk_size);
+}
+
+int	big_stack(t_stack *tmp)
+{
+	int		chunk_size;
+	int		msg;
+	t_node	*node;
+
+	node = tmp->stack_a;
+	chunk_size = get_chunk_size(tmp);
+	msg = from_a_to_b(tmp, chunk_size, node);
+	if (msg == 1)
+		return (free_data(NULL, tmp), 1);
+	from_b_to_a(tmp);
+	return (0);
 }

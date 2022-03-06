@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
+/*   stack_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/06 21:02:59 by kel-amra          #+#    #+#             */
-/*   Updated: 2021/12/06 21:04:40 by kel-amra         ###   ########.fr       */
+/*   Created: 2022/03/05 14:11:43 by kel-amra          #+#    #+#             */
+/*   Updated: 2022/03/06 13:46:58 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
-void	ft_putnbr_unsigned(unsigned int n)
+int	stack_checker(t_stack *tmp)
 {
-	char	c;
+	t_node	*tmp_a;
+	int		i;
 
-	if (n >= 10)
+	i = -1;
+	tmp_a = tmp->stack_a;
+	while (tmp_a != NULL)
 	{
-		ft_putnbr_unsigned((n / 10));
-		ft_putnbr_unsigned((n % 10));
+		if (tmp_a->content != tmp->stack_tmp[++i])
+			return (1);
+		tmp_a = tmp_a->next;
 	}
-	else
-	{
-		c = n + '0';
-		write(1, &c, 1);
-	}
+	return (0);
 }

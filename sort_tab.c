@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	error_checker(int *tab, int size)
+static	int	error_checker(int *tab, int size)
 {
 	int		i;
 	int		j;
@@ -20,22 +20,24 @@ int	error_checker(int *tab, int size)
 
 	i = -1;
 	j = 0;
-	while(++i < size)
+	if (!tab)
+		return (1);
+	while (++i < size)
 	{
 		tmp = tab[i];
 		j = i;
-		while(++j < size)
+		while (++j < size)
 		{
-			if(tmp == tab[j])
+			if (tmp == tab[j])
 				return (1);
 		}
 	}
 	return (0);
 }
 
-int	size_counter(char **tab)
+static	int	size_counter(char **tab)
 {
-	int 	i;
+	int		i;
 	int		j;
 	int		size;
 	char	**tmp;
@@ -48,53 +50,62 @@ int	size_counter(char **tab)
 		tmp = ft_split(tab[j], ' ');
 		while (tmp && tmp[++i])
 			size++;
-		free_data(tmp);
+		free_data(tmp, NULL);
 		i = -1;
 	}
 	return (size);
 }
 
-int	*sort_tab(char **tab, t_stack *tmpp)
+static	int	*tab_fill(char **tab, int size)
 {
-	int		swap;
-	int 	i;
-	int		j;
-	int		k;
-	int		size;
 	int		*sorted;
 	char	**tmp;
+	int		j;
+	int		k;
+	int		i;
 
 	i = -1;
 	j = 0;
 	k = 0;
-	size = size_counter(tab);
 	sorted = malloc(sizeof(int) * (size));
+	if (!sorted)
+		return (free(sorted), NULL);
 	while (tab[++j])
 	{
 		tmp = ft_split(tab[j], ' ');
-		while(tmp && tmp[++i])
+		while (tmp && tmp[++i])
 			sorted[k++] = ft_atoi(tmp[i]);
-		free_data(tmp);
+		free_data(tmp, NULL);
 		i = -1;
 	}
+	return (sorted);
+}
+
+int	*sort_tab(char **tab, t_stack *tmpp)
+{
+	int		swap;
+	int		size;
+	int		*sorted;
+	int		i;
+
+	i = -1;
+	size = size_counter(tab);
+	sorted = tab_fill(tab, size);
 	if (error_checker(sorted, size) == 1)
 	{
 		tmpp->msg_status = 1;
 		free(sorted);
 		return (0);
 	}
-	i = 0;
-	while (i < size - 1)
+	while (++i < size - 1)
 	{
 		if (sorted[i] > sorted[i + 1])
 		{
 			swap = sorted[i];
 			sorted[i] = sorted[i + 1];
 			sorted[i + 1] = swap;
-			i = 0;
+			i = -1;
 		}
-		else
-			i++;
 	}
 	return (sorted);
 }
