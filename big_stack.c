@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:26:34 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/07 10:48:33 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:50:07 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,14 @@ static	int	get_chunk_size(t_stack *tmp)
 {
 	int	chunk_size;
 
-	if (tmp->stack_size < 100)
+	if (tmp->stack_size <= 20)
 		chunk_size = tmp->stack_size / 2;
-	else if (tmp->stack_size >= 100 && tmp->stack_size < 500)
-		chunk_size = tmp->stack_size / 5;
+	else if (tmp->stack_size <= 100)
+		chunk_size = tmp->stack_size / 6;
+	else if (tmp->stack_size <= 200)
+		chunk_size = tmp->stack_size / 8;
 	else
-		chunk_size = tmp->stack_size / 10;
+		chunk_size = tmp->stack_size / 12;
 	return (chunk_size);
 }
 

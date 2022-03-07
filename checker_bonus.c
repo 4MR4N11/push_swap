@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/07 12:18:50 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:05:31 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-static	int	size_checker(t_stack *tmp)
+static	int	instractions_reader(t_stack *tmp)
 {
-	if (tmp->stack_size == 1)
-		return (0);
-	else if (tmp->stack_size == 2)
-		two_stack(tmp);
-	else if (tmp->stack_size == 3)
-		three_stack(tmp);
-	else if (tmp->stack_size == 4)
-		four_stack(tmp);
-	else if (tmp->stack_size == 5)
-		five_stack(tmp);
-	else
+	char	*str;
+
+	str = get_next_line(0);
+	while (str)
 	{
-		if (big_stack(tmp))
+		if (instraction_checker(tmp, str))
 		{
-			free(tmp->stack_tmp);
-			return (write(2, "Error\n", 6), 1);
+			free(str);
+			return (write(1, "Error\n", 6), 1);
 		}
-		free(tmp->stack_tmp);
-		free_data(NULL, tmp);
+		free (str);
+		str = NULL;
+		str = get_next_line(0);
 	}
-	return (0);
+	if (!stack_checker(tmp))
+		return (write(1, "OK\n", 3), 0);
+	return (write(1, "KO\n", 3), 1);
 }
 
 static	void	node_creator(t_stack *tmp, char **str_tmp)
@@ -81,10 +77,14 @@ int	main(int ac, char **av)
 		return (0);
 	if (error_msg(av, &tmp) == 1)
 		return (1);
-	get_data(&tmp, 1);
+	get_data(&tmp);
 	if (!stack_checker(&tmp))
 		return (0);
-	if (size_checker(&tmp))
+	if (instractions_reader(&tmp))
+	{
+		free_data(tmp.instractions, &tmp);
 		return (1);
+	}
+	free_data(tmp.instractions, &tmp);
 	return (0);
 }
