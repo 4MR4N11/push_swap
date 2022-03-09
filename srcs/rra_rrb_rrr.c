@@ -6,7 +6,7 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:10:52 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/06 12:18:58 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/07 17:21:24 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	rra(t_stack *tmp)
 	head = tmp->stack_a;
 	while (tmp->stack_a->next != NULL)
 	{
-	node_tmp = tmp->stack_a;
-	tmp->stack_a = tmp->stack_a->next;
+		node_tmp = tmp->stack_a;
+		tmp->stack_a = tmp->stack_a->next;
 	}
 	tmp->stack_a->next = head;
 	node_tmp->next = NULL;

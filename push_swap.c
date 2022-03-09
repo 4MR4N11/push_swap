@@ -6,11 +6,11 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:48 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/07 12:18:50 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:32:33 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "srcs/push_swap.h"
 
 static	int	size_checker(t_stack *tmp)
 {

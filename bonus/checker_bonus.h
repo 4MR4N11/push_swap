@@ -6,15 +6,15 @@
 /*   By: kel-amra <kel-amra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:03:06 by kel-amra          #+#    #+#             */
-/*   Updated: 2022/03/07 13:57:44 by kel-amra         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:31:15 by kel-amra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef CHECKER_BONUS_H
 # define CHECKER_BONUS_H
 
-# include "libft/libft.h"
-# include "get_next_line/get_next_line.h"
+# include "../srcs/libft/libft.h"
+# include "../srcs/get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
